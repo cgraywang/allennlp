@@ -681,3 +681,11 @@ class _ElmoBiLm(torch.nn.Module):
                                          weight=embedding.data,
                                          trainable=self._requires_grad,
                                          padding_index=0)
+
+model = _ElmoBiLm(options_file='elmo_2x1024_128_2048cnn_1xhighway_options.json',
+                  weight_file='elmo_2x1024_128_2048cnn_1xhighway_weights.hdf5')
+model.eval()
+tx = torch.ones(20,35,50)
+ty = model(tx)
+
+print(ty)
